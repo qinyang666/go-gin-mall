@@ -1,16 +1,20 @@
 package models
 
-import "github.com/jinzhu/gorm"
+type ProductCategory struct {
+	Id uint
+	ParentId uint `gorm:"comment:上级分类的编号：0表示以及分类"`
+	Name string `grom:"comment:名称"`
+	Level uint `grom:"comment:分类级别：0->1级; 1->2级"`
+	ProductCount uint `grom:"comment:商品数量"`
+	ProductUnit string `grom:"comment:商品单位"`
+	NavStatus bool `grom:"comment:是否显示在导航栏：0->不显示; 1->显示"`
+	ShowStatus bool `grom:"comment:显示状态：0->不显示; 1->显示d"`
+	Sort uint `gorm:"comment:排序"`
+	Icon string `gorm:"图标"`
+	Keywords string `gorm:"关键字"`
+	Description string `gorm:"描述"`
+}
 
-type Goods struct {
-	gorm.Model
-	Code string `grom:"comment:商品编码"`
-	Title string `grom:"comment:商品名称"`
-	Images string `grom:"comment:商品图片列表"`
-	PriceSale uint `grom:"comment:销售价"`
-	PriceOrigin uint `grom:"comment:原价"`
-	Stock uint `grom:"comment:库存"`
-	CategoryId uint `grom:"comment:分类id"`
-	Desc string `gorm:"comment:描述"`
-	IsOnSale bool `gorm:"是否上架：0:已下架 1:已上架"`
+func (ProductCategory) TableName() string {
+	return "pms_product_category"
 }
