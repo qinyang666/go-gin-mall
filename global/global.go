@@ -10,9 +10,11 @@ package global
 import (
 	"github.com/jinzhu/gorm"
 	"github.com/sirupsen/logrus"
+	"github.com/spf13/viper"
 )
 
 var (
 	DB *gorm.DB
 	LOG *logrus.Logger
+	CONFIG *viper.Viper
 )
